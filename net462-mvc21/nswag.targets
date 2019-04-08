@@ -1,0 +1,9 @@
+<Project>
+    <Target Name="SwaggerGen" AfterTargets="Build">
+        <PropertyGroup>
+            <OutputPathClean>$(OutputPath.Replace('\', '/'))</OutputPathClean>
+            <SwaggerCmd>$(NSwagExe) aspnetcore2swagger "/assembly:$(TargetPath)" "/output:$(OutputPath)swagger.json"</SwaggerCmd>
+        </PropertyGroup>
+        <Exec Command="$(SwaggerCmd)"/>
+    </Target>
+</Project>

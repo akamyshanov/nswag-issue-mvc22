@@ -1,0 +1,20 @@
+﻿<Project Sdk="Microsoft.NET.Sdk">
+
+    <PropertyGroup>
+        <TargetFramework>net462</TargetFramework>
+    </PropertyGroup>
+
+    <ItemGroup>
+        <PackageReference Include="Microsoft.AspNetCore.Mvc" Version="2.2.0" />
+        <PackageReference Include="NSwag.AspNetCore" Version="12.1.0" />
+        <PackageReference Include="NSwag.MSBuild" Version="12.1.0" />
+    </ItemGroup>
+
+    <ItemGroup>
+      <Compile Include="..\net462-mvc21\Startup.cs">
+        <Link>Startup.cs</Link>
+      </Compile>
+    </ItemGroup>
+
+    <Import Project="..\net462-mvc21\nswag.targets" />
+</Project>

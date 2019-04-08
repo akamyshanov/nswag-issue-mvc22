@@ -1,0 +1,29 @@
+﻿<Project Sdk="Microsoft.NET.Sdk">
+
+    <PropertyGroup>
+        <TargetFramework>netcoreapp2.2</TargetFramework>
+        <CopyLocalLockFileAssemblies>true</CopyLocalLockFileAssemblies>
+    </PropertyGroup>
+
+    <ItemGroup>
+        <PackageReference Include="Microsoft.AspNetCore.Mvc" Version="2.2.0"/>
+        <PackageReference Include="NSwag.AspNetCore" Version="12.1.0"/>
+        <PackageReference Include="NSwag.MSBuild" Version="12.1.0"/>
+    </ItemGroup>
+
+    <ItemGroup>
+        <Compile Include="..\net462-mvc21\Startup.cs">
+            <Link>Startup.cs</Link>
+        </Compile>
+    </ItemGroup>
+
+
+    <Target Name="SwaggerGen" AfterTargets="Build">
+        <PropertyGroup>
+            <OutputPathClean>$(OutputPath.Replace('\', '/'))</OutputPathClean>
+            <SwaggerCmd>$(NSwagExe_Core22) aspnetcore2swagger "/assembly:$(TargetPath)" "/output:$(OutputPath)swagger.json"</SwaggerCmd>
+        </PropertyGroup>
+        <Exec Command="$(SwaggerCmd)"/>
+    </Target>
+    
+</Project>
